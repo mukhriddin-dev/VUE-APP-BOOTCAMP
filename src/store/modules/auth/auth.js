@@ -1,7 +1,7 @@
 import axios from "@/service/axios.js"
 
 export const auth = {
-    
+
     state: () => (
         {
             isAuth: false,
@@ -36,9 +36,7 @@ export const auth = {
 
     actions: {
 
-        LOGIN_USER: async ({
-            commit
-        }, payload) => {
+        LOGIN_USER: async ({ commit }, payload) => {
 
             try {
                 const response = await axios.post("/admin/login", payload)
@@ -47,7 +45,6 @@ export const auth = {
                 commit('SET_MESSAGES', "")
                 commit('SET_USERNAME', response.data.username)
                 commit('SET_ROLE', response.data.role)
-
             } catch (err) {
                 console.log(err)
                 commit('SET_MESSAGES', err.response.data.message)

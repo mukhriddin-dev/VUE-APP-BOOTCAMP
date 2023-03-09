@@ -2,8 +2,6 @@
     <!-- <template v-if="!isAuth">
         <Login />
     </template> -->
-
-
     <Header />
     <main class="min-h-screen">
         <router-view></router-view>

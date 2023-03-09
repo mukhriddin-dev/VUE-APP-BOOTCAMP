@@ -20,14 +20,14 @@
                                 email</label>
                             <input type="text" name="email" id="email"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="name@company.com"  v-model="username">
+                                placeholder="name@company.com" v-model="username">
                         </div>
                         <div>
                             <label for="password"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                             <input type="password" name="password" id="password" placeholder="••••••••"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                 v-model="password">
+                                v-model="password">
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-start">
@@ -78,18 +78,27 @@ export default {
                 password: this.password
             }
 
-            // console.log(params)
+       
 
             if (params.username.length === 0 || params.password.length === 0) {
                 toast.error('Please enter a username and password');
-                
+
             } else {
-                this.$store.dispatch('LOGIN_USER', params)
-                toast.success('is logged in successfully');
+                this.$store.dispatch('LOGIN_USER', params).then((response) => {
+                    console.log(response)
+                    if (response.status === 201) {
+                        this.$router.push({ path: "/" })
+                        toast.success('is logged in successfully');
+                    }
+                }).catch((error) => {
+                    toast.warn("username or password is incorrect");
+                })
+
             }
 
         }
     },
+
     computed: {
         authStatus() {
             return this.$store.state.auth.authMessage

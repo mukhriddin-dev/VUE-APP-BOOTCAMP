@@ -24,6 +24,25 @@ const router = createRouter({
             name: 'registration',
             component: () => import ('../views/Registration.vue')
         }, {
+            path: "/admin",
+            component: () => import ('../views/Admin.vue'),
+
+            children: [
+                {
+                    path: "/admin/add",
+                    name: "add",
+                    component: () => import ('../views/AddAdmin.vue')
+                },
+                {
+                    path: "/admin/list",
+                    name: "list",
+                    component: () => import ('../views/AdminLists.vue')
+                }
+
+            ]
+
+
+        }, {
             path: '/:pathMatch(.*)*',
             name: 'erorr',
             component: () => import ('../views/NotFound.vue')

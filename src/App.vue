@@ -8,4 +8,5 @@ import MainApp from './layout/MainApp.vue';
   <MainApp />
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

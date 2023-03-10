@@ -61,6 +61,7 @@
     </section>
 </template>
 <script>
+
 import { toast } from 'vue3-toastify';
 
 export default {

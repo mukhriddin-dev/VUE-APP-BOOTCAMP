@@ -42,7 +42,47 @@ const router = createRouter({
             ]
 
 
-        }, {
+        },
+        
+        {
+            path: "/category",
+            component: () => import ('../views/Category.vue'),
+
+            children: [
+                {
+                    path: "/category/add",
+                    name: "categoryadd",
+                    component: () => import ('../views/AddCategory.vue')
+                },
+                {
+                    path: "/category/list",
+                    name: "categorylist",
+                    component: () => import ('../views/CategoryLists.vue')
+                }
+
+            ]
+        },
+
+         {
+            path: "/posts",
+            component: () => import ('../views/Post.vue'),
+
+            children: [
+                {
+                    path: "/posts/add",
+                    name: "postadd",
+                    component: () => import ('../views/Postadd.vue')
+                },
+                {
+                    path: "/posts/list",
+                    name: "postslist",
+                    component: () => import ('../views/Postlist.vue')
+                }
+
+            ]
+        },
+        
+        {
             path: '/:pathMatch(.*)*',
             name: 'erorr',
             component: () => import ('../views/NotFound.vue')
